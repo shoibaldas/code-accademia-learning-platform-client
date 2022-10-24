@@ -1,23 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import lottie from 'lottie-web';
+import Lottiecomponent from '../../asset/LottieComponent/Lottiecomponent';
 
 const Home = () => {
-    const container = useRef(null)
-    useEffect(() => {
-        lottie.loadAnimation({
-            container: container.current,
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            animationData: require('../../coding-lotte.json')
-        });
-
-        return () => {
-            lottie.destroy();
-        };
-    }, [])
-
     return (
         <div className="flex flex-col-reverse -mt-12 md:flex-row md:px-16 lg:pb-0">
             <div className="flex flex-col items-start w-full max-w-xl px-4 mx-auto lg:px-8 lg:max-w-screen-xl">
@@ -58,7 +43,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="flex justify-center">
-                <div className="container w-full" ref={container}></div>
+                <Lottiecomponent></Lottiecomponent>
             </div>
         </div>
     );

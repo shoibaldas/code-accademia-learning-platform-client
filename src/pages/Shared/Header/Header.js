@@ -11,7 +11,7 @@ const Header = () => {
                 <div className="relative flex items-center justify-between">
                     <div className="flex items-center">
                         <Link
-                            href="/"
+                            to="/"
                             aria-label="Company"
                             title="Company"
                             className="inline-flex items-center mr-8"
@@ -77,7 +77,7 @@ const Header = () => {
                         </li>
                         <li>
                             <Link
-                                href="/"
+                                to="/signup"
                                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
                                 aria-label="Sign up"
                                 title="Sign up"
