@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import logo from '../../../site-logo.png';
+import { FaUserAlt } from "react-icons/fa";
+import { RiLogoutBoxRLine } from "react-icons/ri";
 
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
+
     return (
         <div className="bg-transparent">
             <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -65,26 +76,43 @@ const Header = () => {
                         </ul>
                     </div>
                     <ul className="flex items-center hidden space-x-8 lg:flex">
-                        <li>
-                            <Link
-                                to='/login'
-                                aria-label="Sign in"
-                                title="Sign in"
-                                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
-                            >
-                                Login
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to="/signup"
-                                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
-                                aria-label="Sign up"
-                                title="Sign up"
-                            >
-                                Sign up
-                            </Link>
-                        </li>
+                        {user?.uid ?
+                            <>
+                                <div className='tooltip tooltip-bottom' data-tip={user?.displayName}>
+                                    {
+                                        user?.uid ?
+                                            <img className='w-10 rounded-full' src={user?.photoURL} alt='' /> :
+                                            <FaUserAlt className='bg-violet-800'></FaUserAlt>
+                                    }
+                                </div>
+                                <li>
+                                    <RiLogoutBoxRLine onClick={handleLogout} className='text-red-800'></RiLogoutBoxRLine>
+                                </li>
+                            </>
+                            :
+                            <>
+                                <li>
+                                    <Link
+                                        to='/login'
+                                        aria-label="Sign in"
+                                        title="Sign in"
+                                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
+                                    >
+                                        Login
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        to="/signup"
+                                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
+                                        aria-label="Sign up"
+                                        title="Sign up"
+                                    >
+                                        Sign up
+                                    </Link>
+                                </li>
+                            </>
+                        }
                     </ul>
                     <div className="lg:hidden">
                         <button

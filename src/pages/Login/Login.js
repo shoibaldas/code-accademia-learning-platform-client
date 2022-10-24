@@ -3,11 +3,25 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
     const [hidePassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
-    const { signInUser } = useContext(AuthContext);
+    const { signInUser, providerLogin } = useContext(AuthContext);
+
+    const googleProvider = new GoogleAuthProvider();
+
+    const handleGoogleSignin = () => {
+        providerLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+
+            .catch(error => console.error(error))
+
+    }
 
     const handleSignIn = (event) => {
         event.preventDefault();
@@ -80,7 +94,7 @@ const Login = () => {
                         <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
                     </div>
                     <div className="flex justify-center space-x-4">
-                        <button aria-label="Log in with Google" >
+                        <button onClick={handleGoogleSignin} aria-label="Log in with Google" >
                             <FcGoogle className='w-6 h-6'></FcGoogle>
                         </button>
                         <button aria-label="Log in with GitHub">
