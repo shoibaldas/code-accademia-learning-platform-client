@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BiCategory, BiSearchAlt } from "react-icons/bi";
 import { Link } from 'react-router-dom';
-import { DiCodeBadge } from "react-icons/di";
-import { TbBrandJavascript, TbCodePlus, TbBrandPython } from "react-icons/tb";
-import { AiOutlineCodepen, AiOutlineCode } from "react-icons/ai";
-
+import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 const LeftSideNavbar = () => {
+    const { categories } = useContext(AuthContext);
     return (
-        <div className='ml-10'>
+        <div className=''>
             <div className="flex flex-col h-full rounded-md p-3 w-60 dark:bg-gray-900 dark:text-gray-100">
                 <div className="space-y-3">
                     <div className="flex items-center justify-between">
@@ -27,59 +25,21 @@ const LeftSideNavbar = () => {
                     </div>
                     <div className="flex-1">
                         <ul className="pt-2 pb-4 space-y-1 text-sm">
-                            <li className="rounded-sm hover:dark:bg-gray-800">
-                                <Link rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3">
-                                    <div className='text-sky-500'>
-                                        <DiCodeBadge className='h-6 w-6'></DiCodeBadge>
-                                    </div>
-                                    <span>Html/CSS</span>
-                                </Link>
-                            </li>
-                            <li className="rounded-sm hover:dark:bg-gray-800">
-                                <Link rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3">
-                                    <div className='text-amber-700'>
-                                        <TbBrandJavascript className='h-6 w-6'></TbBrandJavascript>
-                                    </div>
-                                    <span>JavaScript</span>
-                                </Link>
-                            </li>
-                            <li className="rounded-sm hover:dark:bg-gray-800">
-                                <Link rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3">
-                                    <div className='text-red-300'>
-                                        <TbCodePlus className='h-6 w-6'></TbCodePlus>
-                                    </div>
-                                    <span>C/C++</span>
-                                </Link>
-                            </li>
-                            <li className="rounded-sm hover:dark:bg-gray-800">
-                                <Link rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3">
-                                    <div className='text-violet-700'>
-                                        <AiOutlineCodepen className='h-6 w-6'></AiOutlineCodepen>
-                                    </div>
-                                    <span>ASP .NET</span>
-                                </Link>
-                            </li>
-                            <li className="rounded-sm hover:dark:bg-gray-800">
-                                <Link rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3">
-                                    <div className='text-green-700'>
-                                        <AiOutlineCode className='h-6 w-6'></AiOutlineCode>
-                                    </div>
-                                    <span>Bash Language</span>
-                                </Link>
-                            </li>
-                            <li className="rounded-sm hover:dark:bg-gray-800">
-                                <Link rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3">
-                                    <div className='text-amber-300'>
-                                        <TbBrandPython className='h-6 w-6'></TbBrandPython>
-                                    </div>
-                                    <span>Python</span>
-                                </Link>
-                            </li>
+                            {
+                                categories.map(category => <li className="rounded-sm hover:dark:bg-gray-800" key={category._id}>
+                                    <Link rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3">
+                                        <div className={category.color} >
+                                            <i className={category.icon}></i>
+                                        </div>
+                                        <h2 className='text-md tex-2xl'>{category.name}</h2>
+                                    </Link>
+                                </li>)
+                            }
                         </ul>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

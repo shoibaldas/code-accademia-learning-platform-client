@@ -8,6 +8,14 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/category-courses')
+            .then(res => res.json())
+            .then(data => setCategories(data))
+    }, [])
+
     const providerLogin = (provider) => {
         setLoading(true);
         return signInWithPopup(auth, provider);
@@ -49,7 +57,7 @@ const AuthProvider = ({ children }) => {
         return () => unSubscribe();
     }, [])
 
-    const authinfo = { user, loading, providerLogin, signInUser, createUser, updateUserProfile, verifyEmail, logOut };
+    const authinfo = { categories, user, loading, providerLogin, signInUser, createUser, updateUserProfile, verifyEmail, logOut };
     return (
         <AuthContext.Provider value={authinfo}>
             {children}
