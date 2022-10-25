@@ -35,7 +35,7 @@ const Header = () => {
                         <ul className="flex items-center hidden space-x-8 lg:flex">
                             <li>
                                 <Link
-                                    href="/"
+                                    to="/courses"
                                     aria-label="Our product"
                                     title="Our product"
                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
@@ -46,8 +46,8 @@ const Header = () => {
                             <li>
                                 <Link
                                     href="/"
-                                    aria-label="Our product"
-                                    title="Our product"
+                                    aria-label="FaQ"
+                                    title="FaQ"
                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
                                 >
                                     FAQ
