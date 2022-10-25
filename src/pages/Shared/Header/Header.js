@@ -55,7 +55,7 @@ const Header = () => {
                             </li>
                             <li>
                                 <Link
-                                    href="/"
+                                    to="/blog"
                                     aria-label="Product pricing"
                                     title="Product pricing"
                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
@@ -86,7 +86,8 @@ const Header = () => {
                                     }
                                 </div>
                                 <li>
-                                    <RiLogoutBoxRLine onClick={handleLogout} className='text-red-800 cursor-pointer'></RiLogoutBoxRLine>
+                                    <RiLogoutBoxRLine onClick={handleLogout} className='text-red-800 h-6 w-8 cursor-pointer' aria-label="Sign out"
+                                        title="Sign out"></RiLogoutBoxRLine>
                                 </li>
                             </>
                             :
