@@ -23,8 +23,8 @@ const Header = () => {
                     <div className="flex items-center">
                         <Link
                             to="/"
-                            aria-label="Company"
-                            title="Company"
+                            aria-label="Home"
+                            title="Home"
                             className="inline-flex items-center mr-8"
                         >
                             <img className='w-16 h-16' src={logo} alt="" />
@@ -56,8 +56,8 @@ const Header = () => {
                             <li>
                                 <Link
                                     to="/blog"
-                                    aria-label="Product pricing"
-                                    title="Product pricing"
+                                    aria-label="Blog"
+                                    title="Blog"
                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
                                 >
                                     Blog
@@ -95,8 +95,8 @@ const Header = () => {
                                 <li>
                                     <Link
                                         to='/login'
-                                        aria-label="Sign in"
-                                        title="Sign in"
+                                        aria-label="Login"
+                                        title="Login"
                                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
                                     >
                                         Login
@@ -144,8 +144,8 @@ const Header = () => {
                                         <div>
                                             <Link
                                                 href="/"
-                                                aria-label="Company"
-                                                title="Company"
+                                                aria-label="Home"
+                                                title="Home"
                                                 className="inline-flex items-center"
                                             >
                                                 <img className='w-16 h-16' src={logo} alt="" />
@@ -185,8 +185,8 @@ const Header = () => {
                                             <li>
                                                 <Link
                                                     href="/"
-                                                    aria-label="Our product"
-                                                    title="Our product"
+                                                    aria-label="FAQ"
+                                                    title="FAQ"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
                                                     FAQ
@@ -195,8 +195,8 @@ const Header = () => {
                                             <li>
                                                 <Link
                                                     href="/"
-                                                    aria-label="Product pricing"
-                                                    title="Product pricing"
+                                                    aria-label="Blog"
+                                                    title="Blog"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
                                                     Blog
@@ -215,8 +215,8 @@ const Header = () => {
                                             <li>
                                                 <Link
                                                     to='/login'
-                                                    aria-label="Sign in"
-                                                    title="Sign in"
+                                                    aria-label="Login"
+                                                    title="Login"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
                                                     Login
