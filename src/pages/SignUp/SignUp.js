@@ -1,13 +1,19 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Lottiecomponent from '../../asset/LottieComponent/Lottiecomponent';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
     const [hidePassword, setShowPassword] = useState(false);
     const [error, setError] = useState(null);
     const [accepted, setAccepted] = useState(false);
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile, verifyEmail } = useContext(AuthContext);
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
+
+    const navigate = useNavigate();
 
     const handleClickShowPassword = () => {
         setShowPassword(!hidePassword);
@@ -39,11 +45,20 @@ const SignUp = () => {
                 form.reset();
                 handleUpdateUserProfile(name, photoURL);
                 setError('');
+                handleEmailVerification();
+                toast.success("Account successfully created. Please Verify your email.")
+                navigate('/');
             })
             .catch(error => {
                 console.error(error)
                 setError(error.message);
             })
+    }
+
+    const handleEmailVerification = () => {
+        verifyEmail()
+            .then(() => { })
+            .catch(error => console.error(error))
     }
 
     const handleUpdateUserProfile = (name, photoURL) => {
@@ -59,6 +74,7 @@ const SignUp = () => {
     const handleAccepted = event => {
         setAccepted(event.target.checked)
     }
+
     return (
         <div className='container flex justify-center items-center gap-56'>
             <div className='hidden md:flex w-5/12 text-center flex-col '>

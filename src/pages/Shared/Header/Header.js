@@ -86,7 +86,7 @@ const Header = () => {
                                     }
                                 </div>
                                 <li>
-                                    <RiLogoutBoxRLine onClick={handleLogout} className='text-red-800'></RiLogoutBoxRLine>
+                                    <RiLogoutBoxRLine onClick={handleLogout} className='text-red-800 cursor-pointer'></RiLogoutBoxRLine>
                                 </li>
                             </>
                             :

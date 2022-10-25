@@ -1,14 +1,20 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { GoogleAuthProvider } from 'firebase/auth';
+import toast from 'react-hot-toast';
 
 const Login = () => {
     const [hidePassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const { signInUser, providerLogin } = useContext(AuthContext);
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
+
+    const navigate = useNavigate();
 
     const googleProvider = new GoogleAuthProvider();
 
@@ -35,6 +41,12 @@ const Login = () => {
                 console.log(user);
                 form.reset();
                 setError('');
+                if (user.emailVerified) {
+                    navigate(from, { replace: true });
+                }
+                else {
+                    toast.error("Your email is not verified")
+                }
             })
             .catch(error => {
                 console.error(error)

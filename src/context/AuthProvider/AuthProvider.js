@@ -1,40 +1,55 @@
 import React, { createContext, useEffect, useState } from 'react';
 import app from '../../firebase/firebaseconfig';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const providerLogin = (provider) => {
+        setLoading(true);
         return signInWithPopup(auth, provider);
     }
     const signInUser = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
 
     const createUser = (email, password) => {
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
 
     const logOut = () => {
+        setLoading(true);
         return signOut(auth);
     }
 
     const updateUserProfile = (profile) => {
+        setLoading(true);
         return updateProfile(auth.currentUser, profile);
+    }
+    const verifyEmail = () => {
+        setLoading(true);
+        return sendEmailVerification(auth.currentUser);
+
     }
 
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser);
+        const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+            if (currentUser === null || currentUser.emailVerified) {
+                setUser(currentUser);
+            }
+
+            setLoading(false);
         });
 
         return () => unSubscribe();
     }, [])
 
-    const authinfo = { user, providerLogin, signInUser, createUser, updateUserProfile, logOut };
+    const authinfo = { user, loading, providerLogin, signInUser, createUser, updateUserProfile, verifyEmail, logOut };
     return (
         <AuthContext.Provider value={authinfo}>
             {children}
