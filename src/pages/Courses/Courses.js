@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { FaStar, FaEye } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 import { BiTimer } from 'react-icons/bi';
 
 const Courses = () => {

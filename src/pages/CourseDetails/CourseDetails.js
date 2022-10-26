@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { FaShareAlt, FaBookmark, FaStar, FaFileDownload, FaEye } from "react-icons/fa";
+import { FaFileDownload, FaEye } from "react-icons/fa";
 import { BiTimer } from 'react-icons/bi';
 import { SiOpenaccess } from 'react-icons/si';
 
@@ -63,7 +63,6 @@ const CourseDetails = () => {
                         </div>
                         <p className="leading-snug text-start dark:text-gray-300">{course.outline}</p>
                     </div>
-
                     <Link
                         href="/"
                         aria-label="Download PDF"
@@ -71,7 +70,6 @@ const CourseDetails = () => {
                     >
                         <SiOpenaccess className='mx-2'></SiOpenaccess>
                         Premium Access
-
                     </Link>
                 </div>
             </div>
