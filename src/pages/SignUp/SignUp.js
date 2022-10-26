@@ -8,7 +8,7 @@ const SignUp = () => {
     const [hidePassword, setShowPassword] = useState(false);
     const [error, setError] = useState(null);
     const [accepted, setAccepted] = useState(false);
-    const { createUser, updateUserProfile, verifyEmail } = useContext(AuthContext);
+    const { createUser, updateUserProfile, setSignIn } = useContext(AuthContext);
     const location = useLocation();
 
     const from = location.state?.from?.pathname || '/';
@@ -45,7 +45,6 @@ const SignUp = () => {
                 form.reset();
                 handleUpdateUserProfile(name, photoURL);
                 setError('');
-                handleEmailVerification();
                 toast.success("Account successfully created. Please Verify your email.")
                 navigate('/');
             })
@@ -54,20 +53,15 @@ const SignUp = () => {
                 setError(error.message);
             })
     }
-
-    const handleEmailVerification = () => {
-        verifyEmail()
-            .then(() => { })
-            .catch(error => console.error(error))
-    }
-
     const handleUpdateUserProfile = (name, photoURL) => {
         const profile = {
             displayName: name,
             photoURL: photoURL
         }
         updateUserProfile(profile)
-            .then(() => { })
+            .then(() => {
+                setSignIn(profile);
+            })
             .catch(error => console.log(error))
     }
 
@@ -138,7 +132,7 @@ const SignUp = () => {
                         </div>
                         <p className='text-red-700 text-sm'>{error}</p>
                         <div className="form-control mt-2">
-                            <button disabled={!accepted} className="rounded-md py-3 text-white font-semibold border border-gray-400 bg-violet-600">Sign Up</button>
+                            <button disabled={!accepted} className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-100 transition duration-200 shadow-md hover:bg-purple-700 focus:shadow-outline focus:outline-none">Sign Up</button>
                         </div>
                     </form>
                     <label className="label">

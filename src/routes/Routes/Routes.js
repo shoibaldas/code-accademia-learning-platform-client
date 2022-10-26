@@ -10,6 +10,7 @@ import ErrorPage from '../../pages/ErrorPage/ErrorPage';
 import Home from '../../pages/Home/Home';
 import Login from '../../pages/Login/Login';
 import SignUp from '../../pages/SignUp/SignUp';
+import PrivateRoutes from '../PrivateRoutes/PrivateRoutes';
 
 export const routes = createBrowserRouter([
     {
@@ -52,7 +53,7 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/course/:id/checkout',
-                element: <ConfirmationPage></ConfirmationPage>,
+                element: <PrivateRoutes><ConfirmationPage></ConfirmationPage></PrivateRoutes>,
                 loader: ({ params }) => fetch(`http://localhost:5000/course/${params.id}`)
             }
         ]

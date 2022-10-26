@@ -7,7 +7,7 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    const [signIn, setSignIn] = useState({});
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
@@ -39,25 +39,19 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return updateProfile(auth.currentUser, profile);
     }
-    const verifyEmail = () => {
-        setLoading(true);
-        return sendEmailVerification(auth.currentUser);
-
-    }
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-            if (currentUser === null || currentUser.emailVerified) {
+            if (currentUser === null || currentUser) {
                 setUser(currentUser);
             }
-
             setLoading(false);
         });
 
         return () => unSubscribe();
-    }, [])
+    }, [signIn])
 
-    const authinfo = { categories, user, loading, providerLogin, signInUser, createUser, updateUserProfile, verifyEmail, logOut };
+    const authinfo = { categories, user, loading, setSignIn, providerLogin, signInUser, createUser, updateUserProfile, logOut };
     return (
         <AuthContext.Provider value={authinfo}>
             {children}

@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import toast from 'react-hot-toast';
 
 const Login = () => {
@@ -17,6 +17,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     const googleProvider = new GoogleAuthProvider();
+    const gitHubProvider = new GithubAuthProvider();
 
     const handleGoogleSignin = () => {
         providerLogin(googleProvider)
@@ -27,6 +28,16 @@ const Login = () => {
 
             .catch(error => console.error(error))
 
+    }
+
+    const handleGitSignin = () => {
+        providerLogin(gitHubProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+
+            .catch(error => console.error(error))
     }
 
     const handleSignIn = (event) => {
@@ -41,12 +52,8 @@ const Login = () => {
                 console.log(user);
                 form.reset();
                 setError('');
-                if (user.emailVerified) {
-                    navigate(from, { replace: true });
-                }
-                else {
-                    toast.error("Your email is not verified")
-                }
+                toast.success('Login Successfully!');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error(error)
@@ -97,15 +104,16 @@ const Login = () => {
                         </div>
                         <p className='text-red-700 text-sm'>{error}</p>
                     </div>
-                </form>
-                <div className="space-y-2">
-                    <div>
-                        <button type="button" className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-100 transition duration-200 shadow-md hover:bg-purple-700 focus:shadow-outline focus:outline-none">Sign in</button>
+                    <div className="space-y-2">
+                        <div>
+                            <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-400 dark:text-gray-100 transition duration-200 shadow-md hover:bg-purple-700 focus:shadow-outline focus:outline-none">Sign in</button>
+                        </div>
+                        <p className="px-6 text-sm text-center dark:text-gray-400">Don't have an account yet?
+                            <Link rel="noopener noreferrer" to="/signup" className="hover:underline dark:text-violet-400">Sign up</Link>.
+                        </p>
                     </div>
-                    <p className="px-6 text-sm text-center dark:text-gray-400">Don't have an account yet?
-                        <Link rel="noopener noreferrer" to="/signup" className="hover:underline dark:text-violet-400">Sign up</Link>.
-                    </p>
-                </div>
+                </form>
+
                 <div className='space-y-2'>
                     <div className="flex items-center pt-4 space-x-1">
                         <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
@@ -116,7 +124,7 @@ const Login = () => {
                         <button onClick={handleGoogleSignin} aria-label="Log in with Google" >
                             <FcGoogle className='w-6 h-6'></FcGoogle>
                         </button>
-                        <button aria-label="Log in with GitHub">
+                        <button onClick={handleGitSignin} aria-label="Log in with GitHub">
                             <FaGithub className='w-6 h-6 text-gray-100'></FaGithub>
                         </button>
                     </div>
