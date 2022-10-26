@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { FaShareAlt, FaBookmark, FaStar, FaEye } from "react-icons/fa";
+import { FaStar, FaEye } from "react-icons/fa";
 import { BiTimer } from 'react-icons/bi';
 
 const Courses = () => {
@@ -10,8 +10,6 @@ const Courses = () => {
             <div className="grid gap-5 row-gap-5 mb-8 lg:grid-cols-4  sm:grid-cols-2" >
                 {
                     courses.map(course =>
-
-
                         <div
                             key={course._id}
                             href="/"
@@ -30,7 +28,7 @@ const Courses = () => {
                                             {course.name}
                                         </h3>
                                         <div className="flex p-4 justify-between border-t-2 border-sky-700">
-                                            <div className="flex items-center space-x-2">
+                                            <div className="flex items-center space-x-1">
                                                 <FaEye className='text-sky-400'></FaEye>
                                                 <span className='text-gray-200'>{course.views}</span>
                                             </div>
@@ -43,7 +41,7 @@ const Courses = () => {
                                         </div>
                                         <div className='mt-2'>
                                             <Link
-                                                href="/"
+                                                to={`/course/${course._id}`}
                                                 className="inline-flex items-center justify-center w-auto h-10 px-6 mb-3 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
                                             >
                                                 See Details
@@ -53,9 +51,6 @@ const Courses = () => {
                                 </div>
                             </div>
                         </div>
-
-
-
                     )
                 }
             </div>

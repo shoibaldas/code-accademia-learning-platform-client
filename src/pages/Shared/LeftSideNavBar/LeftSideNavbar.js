@@ -27,7 +27,7 @@ const LeftSideNavbar = () => {
                         <ul className="pt-2 pb-4 space-y-1 text-sm">
                             {
                                 categories.map(category => <li className="rounded-sm hover:dark:bg-gray-800" key={category._id}>
-                                    <Link rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3">
+                                    <Link rel="noopener noreferrer" to={`/course/${category._id}`} className="flex items-center p-2 space-x-3">
                                         <div className={category.color} >
                                             <i className={category.icon}></i>
                                         </div>

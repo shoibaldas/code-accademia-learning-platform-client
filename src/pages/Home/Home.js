@@ -27,10 +27,10 @@ const Home = () => {
                     </div>
                     <div className="flex flex-col items-center justify-center md:flex-row">
                         <Link
-                            href="/"
+                            to="/courses"
                             className="inline-flex items-center justify-center w-auto h-12 px-6 mb-3 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto md:mr-4 md:mb-0 bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none"
                         >
-                            Access Now
+                            Enroll Now
                         </Link>
                         <Link
                             href="/"
