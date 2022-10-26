@@ -7,7 +7,7 @@ const ConfirmationPage = () => {
     const course = useLoaderData();
 
     const showSuccess = () => {
-        toast.success('Successfull')
+        toast.success('You have Successfully Purchased!')
     }
 
     return (

@@ -14,7 +14,7 @@ const CourseDetails = () => {
     const course = useLoaderData();
 
     return (
-        <div className='flex justify-center'>
+        <div className='flex mt-8 md:mt-0 justify-center'>
             <div ref={ref} className="w-10/12 z-0 p-4 rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
                 <div className="flex justify-between pb-4 border-bottom">
                     <div className="flex items-center">
