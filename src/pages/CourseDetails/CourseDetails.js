@@ -86,15 +86,21 @@ const CourseDetails = () => {
                         <div className="modal">
                             <div className="modal-box">
                                 <h3 className="font-bold text-lg">One Step Away!</h3>
-                                <div className='flex items-center mt-6'>
-                                    <img src={course.picture} className="md:w-3/12 md:h-16 w-2/12 h-10 rounded-lg" alt="" />
-                                    <h5 className='mx-4'>{course.name}</h5>
+                                <div className='flex justify-between items-center mt-6'>
+                                    <div className='flex items-center'>
+                                        <img src={course.picture} className="md:w-5/12 md:h-16 w-4/12 h-10 rounded-lg" alt="" />
+                                        <h5 className='mx-4'>{course.name}</h5>
+                                    </div>
+                                    <div className='flex items-center'>
+                                        <h6 className='text-amber-600 text-lg font-semibold'>{course.taka}</h6>
+                                        <TbCurrencyTaka className='text-green-500'></TbCurrencyTaka>
+                                    </div>
                                 </div>
                                 <div className="modal-action">
                                     <label htmlFor="my-modal" className="absolute top-3 right-3 cursor-pointer hover:text-red-500 "><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="flex-shrink-0 w-6 h-6">
                                         <polygon points="427.314 107.313 404.686 84.687 256 233.373 107.314 84.687 84.686 107.313 233.373 256 84.686 404.687 107.314 427.313 256 278.627 404.686 427.313 427.314 404.687 278.627 256 427.314 107.313"></polygon>
                                     </svg></label>
-                                    <Link to='/checkout' className="inline-flex items-center justify-center w-auto h-10 px-6 mb-3 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto md:mb-0 bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none cursor-pointer">Checkout</Link>
+                                    <Link to={`/course/${course._id}/checkout`} className="inline-flex items-center justify-center w-auto h-10 px-6 mb-3 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto md:mb-0 bg-purple-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none cursor-pointer">Checkout</Link>
                                 </div>
                             </div>
                         </div>
