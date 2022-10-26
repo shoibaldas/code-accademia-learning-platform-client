@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { FaEye } from "react-icons/fa";
 import { BiTimer } from 'react-icons/bi';
+import { TbCurrencyTaka } from 'react-icons/tb';
 
 const Courses = () => {
     const courses = useLoaderData();
@@ -27,16 +28,19 @@ const Courses = () => {
                                         <h3 className="mb-2 text-start text-2xl font-semibold dark:text-gray-200 leading-5">
                                             {course.name}
                                         </h3>
-                                        <div className="flex p-4 justify-between border-t-2 border-sky-700">
+                                        <div className="flex space-x-0 items-center">
+                                            <TbCurrencyTaka className='text-green-500'></TbCurrencyTaka>
+                                            <span className='text-gray-200'>{course.taka}</span>
+                                        </div>
+                                        <div className="flex p-3 justify-between border-t-2 border-sky-700">
                                             <div className="flex items-center space-x-1">
                                                 <FaEye className='text-sky-400'></FaEye>
                                                 <span className='text-gray-200'>{course.views}</span>
                                             </div>
-                                            <div className="flex space-x-2">
-                                                <div className="flex space-x-1 items-center">
-                                                    <BiTimer className='text-amber-500'></BiTimer>
-                                                    <span className='text-gray-200'>{course.time}</span>
-                                                </div>
+
+                                            <div className="flex space-x-0 items-center">
+                                                <BiTimer className='text-amber-500'></BiTimer>
+                                                <span className='text-gray-200'>{course.time}</span>
                                             </div>
                                         </div>
                                         <div className='mt-2'>

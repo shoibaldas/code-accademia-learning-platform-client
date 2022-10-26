@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import CourseContent from '../../layout/CourseContent/CourseContent';
 import Main from '../../layout/Main/Main';
 import Blog from '../../pages/Blog/Blog';
+import ConfirmationPage from '../../pages/ConfirmationPage/ConfirmationPage';
 import CourseDetails from '../../pages/CourseDetails/CourseDetails';
 import Courses from '../../pages/Courses/Courses';
 import ErrorPage from '../../pages/ErrorPage/ErrorPage';
@@ -34,7 +35,7 @@ export const routes = createBrowserRouter([
                         path: "/course/:id",
                         element: <CourseDetails></CourseDetails>,
                         loader: ({ params }) => fetch(`http://localhost:5000/course/${params.id}`)
-                    }
+                    },
                 ]
             },
             {
@@ -48,6 +49,10 @@ export const routes = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp></SignUp>
+            },
+            {
+                path: '/checkout',
+                element: <ConfirmationPage></ConfirmationPage>
             }
         ]
     }
