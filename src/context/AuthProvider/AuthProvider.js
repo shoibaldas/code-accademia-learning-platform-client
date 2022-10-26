@@ -11,7 +11,7 @@ const AuthProvider = ({ children }) => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/category-courses')
+        fetch('https://code-accademia-server.vercel.app/category-courses')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])

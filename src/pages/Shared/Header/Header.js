@@ -2,13 +2,26 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import logo from '../../../site-logo.png';
-import { FaUserAlt } from "react-icons/fa";
+import { FaUserAlt, FaMoon, FaSun } from "react-icons/fa";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { user, logOut } = useContext(AuthContext);
+    const [value, setValue] = useState(true);
+
+    const handleValue = (event) => {
+        if (value === true) {
+            event.target.value = false
+            setValue(event.target.value);
+
+        }
+        else {
+            event.target.value = true
+            setValue(event.target.value);
+        }
+    }
 
     const handleLogout = () => {
         logOut()
@@ -35,6 +48,16 @@ const Header = () => {
                         <ul className="flex items-center hidden space-x-8 lg:flex">
                             <li>
                                 <Link
+                                    to="/"
+                                    aria-label="Home"
+                                    title="Home"
+                                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                >
+                                    Home
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
                                     to="/courses"
                                     aria-label="Our product"
                                     title="Our product"
@@ -45,7 +68,7 @@ const Header = () => {
                             </li>
                             <li>
                                 <Link
-                                    href="/"
+                                    to="/faq"
                                     aria-label="FaQ"
                                     title="FaQ"
                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
@@ -73,6 +96,7 @@ const Header = () => {
                                     About us
                                 </Link>
                             </li>
+
                         </ul>
                     </div>
                     <ul className="flex items-center hidden space-x-8 lg:flex">
@@ -88,6 +112,18 @@ const Header = () => {
                                 <li>
                                     <RiLogoutBoxRLine onClick={handleLogout} className='text-red-800 h-6 w-8 cursor-pointer' aria-label="Sign out"
                                         title="Sign out"></RiLogoutBoxRLine>
+                                </li>
+                                <li>
+                                    <Link onClick={handleValue}>{
+                                        value ?
+                                            <div className="tooltip tooltip-bottom" data-tip="Dark" >
+                                                <FaMoon />
+                                            </div>
+                                            :
+                                            <div className="tooltip tooltip-bottom" data-tip="Light">
+                                                <FaSun />
+                                            </div>
+                                    }</Link>
                                 </li>
                             </>
                             :
@@ -111,6 +147,18 @@ const Header = () => {
                                     >
                                         Sign up
                                     </Link>
+                                </li>
+                                <li>
+                                    <Link onClick={handleValue}>{
+                                        value ?
+                                            <div className="tooltip tooltip-bottom" data-tip="Dark" >
+                                                <FaMoon />
+                                            </div>
+                                            :
+                                            <div className="tooltip tooltip-bottom" data-tip="Light">
+                                                <FaSun />
+                                            </div>
+                                    }</Link>
                                 </li>
                             </>
                         }
@@ -174,9 +222,19 @@ const Header = () => {
                                         <ul className="space-y-4">
                                             <li>
                                                 <Link
-                                                    href="/"
-                                                    aria-label="Our product"
-                                                    title="Our product"
+                                                    to="/"
+                                                    aria-label="Home"
+                                                    title="Home"
+                                                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                                                >
+                                                    Home
+                                                </Link>
+                                            </li>
+                                            <li>
+                                                <Link
+                                                    to="/courses"
+                                                    aria-label="Courses"
+                                                    title="Courses"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
                                                     Courses
@@ -184,7 +242,7 @@ const Header = () => {
                                             </li>
                                             <li>
                                                 <Link
-                                                    href="/"
+                                                    to="/faq"
                                                     aria-label="FAQ"
                                                     title="FAQ"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -194,7 +252,7 @@ const Header = () => {
                                             </li>
                                             <li>
                                                 <Link
-                                                    href="/"
+                                                    to="/blog"
                                                     aria-label="Blog"
                                                     title="Blog"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -204,7 +262,7 @@ const Header = () => {
                                             </li>
                                             <li>
                                                 <Link
-                                                    href="/"
+                                                    to="/about"
                                                     aria-label="About us"
                                                     title="About us"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
@@ -212,26 +270,68 @@ const Header = () => {
                                                     About us
                                                 </Link>
                                             </li>
-                                            <li>
-                                                <Link
-                                                    to='/login'
-                                                    aria-label="Login"
-                                                    title="Login"
-                                                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                                                >
-                                                    Login
-                                                </Link>
-                                            </li>
-                                            <li>
-                                                <Link
-                                                    href="/"
-                                                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                                                    aria-label="Sign up"
-                                                    title="Sign up"
-                                                >
-                                                    Sign up
-                                                </Link>
-                                            </li>
+                                            {user?.uid ?
+                                                <>
+                                                    <div className='tooltip tooltip-bottom' data-tip={user?.displayName}>
+                                                        {
+                                                            user?.uid ?
+                                                                <img className='w-10 rounded-full' src={user?.photoURL} alt='' /> :
+                                                                <FaUserAlt className='bg-violet-800'></FaUserAlt>
+                                                        }
+                                                    </div>
+                                                    <li>
+                                                        <RiLogoutBoxRLine onClick={handleLogout} className='text-red-800 mx-auto h-6 w-8 cursor-pointer' aria-label="Sign out"
+                                                            title="Sign out"></RiLogoutBoxRLine>
+                                                    </li>
+                                                    <li>
+                                                        <Link onClick={handleValue}>{
+                                                            value ?
+                                                                <div className="tooltip tooltip-bottom" data-tip="Dark" >
+                                                                    <FaMoon />
+                                                                </div>
+                                                                :
+                                                                <div className="tooltip tooltip-bottom" data-tip="Light">
+                                                                    <FaSun />
+                                                                </div>
+                                                        }</Link>
+                                                    </li>
+                                                </>
+                                                :
+                                                <>
+                                                    <li>
+                                                        <Link
+                                                            to='/login'
+                                                            aria-label="Login"
+                                                            title="Login"
+                                                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
+                                                        >
+                                                            Login
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link
+                                                            to="/signup"
+                                                            className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
+                                                            aria-label="Sign up"
+                                                            title="Sign up"
+                                                        >
+                                                            Sign up
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link onClick={handleValue}>{
+                                                            value ?
+                                                                <div className="tooltip tooltip-bottom" data-tip="Dark" >
+                                                                    <FaMoon />
+                                                                </div>
+                                                                :
+                                                                <div className="tooltip tooltip-bottom" data-tip="Light">
+                                                                    <FaSun />
+                                                                </div>
+                                                        }</Link>
+                                                    </li>
+                                                </>
+                                            }
                                         </ul>
                                     </nav>
                                 </div>
