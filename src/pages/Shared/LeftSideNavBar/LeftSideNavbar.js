@@ -9,7 +9,7 @@ const LeftSideNavbar = () => {
             <div className="flex flex-col h-full rounded-md p-3 w-60 dark:bg-gray-900 dark:text-gray-100">
                 <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                        <h2 className='text-md font-semibold'>Courses Category</h2>
+                        <h2 className='text-md font-semibold'>All Courses</h2>
                         <div className='p-2  text-sky-500'>
                             <BiCategory className='h-6 w-6'></BiCategory>
                         </div>
