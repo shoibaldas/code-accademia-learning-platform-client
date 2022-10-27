@@ -46,7 +46,7 @@ const SignUp = () => {
                 handleUpdateUserProfile(name, photoURL);
                 setError('');
                 toast.success("Account successfully created. Please Verify your email.")
-                navigate('/');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error(error)
