@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../site-logo.png';
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import { Link as ScrollLink } from 'react-scroll';
 
 const Footer = () => {
     return (
@@ -20,10 +21,18 @@ const Footer = () => {
                         <h3 className="tracking-wide uppercase dark:text-gray-50">Product</h3>
                         <ul className="space-y-1">
                             <li>
-                                <Link rel="noopener noreferrer" href="#">Courses</Link>
+                                <Link rel="noopener noreferrer" to="/courses">Courses</Link>
                             </li>
                             <li>
-                                <Link rel="noopener noreferrer" href="#">FAQ</Link>
+                                <ScrollLink
+                                    to="faq"
+                                    spy={true} smooth={true} offset={50} duration={1000}
+                                    aria-label="FaQ"
+                                    title="FaQ"
+                                    className="text-sm cursor-pointer tracking-wide text-gray-200 transition-colors duration-200"
+                                >
+                                    FAQ
+                                </ScrollLink>
                             </li>
                         </ul>
                     </div>
@@ -34,7 +43,15 @@ const Footer = () => {
                                 <Link rel="noopener noreferrer" href="#">About Us</Link>
                             </li>
                             <li>
-                                <Link rel="noopener noreferrer" href="#">Blog</Link>
+                                <ScrollLink
+                                    to="about"
+                                    spy={true} smooth={true} offset={50} duration={1000}
+                                    aria-label="About"
+                                    title="About"
+                                    className="text-sm cursor-pointer tracking-wide text-gray-200 transition-colors duration-200"
+                                >
+                                    About
+                                </ScrollLink>
                             </li>
                         </ul>
                     </div>

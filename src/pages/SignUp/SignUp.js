@@ -73,7 +73,7 @@ const SignUp = () => {
         <div className='container flex justify-center items-center gap-56'>
             <div className='hidden md:flex w-5/12 text-center flex-col '>
                 <div className='md:-mb-9'>
-                    <h1 className='text-4xl font-bold text-violet-800 uppercase'>Sign Up today</h1>
+                    <h1 className='text-4xl font-bold text-purple-500 uppercase'>Sign Up today</h1>
                     <p className='text-md font-semibold text-gray-700'>And, get acess to the best courses...</p>
                 </div>
                 <Lottiecomponent></Lottiecomponent>

@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import logo from '../../../site-logo.png';
 import { FaUserAlt, FaMoon, FaSun } from "react-icons/fa";
 import { RiLogoutBoxRLine } from "react-icons/ri";
+import { Link } from 'react-scroll';
 
 
 const Header = () => {
@@ -34,7 +35,7 @@ const Header = () => {
             <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
                 <div className="relative flex items-center justify-between">
                     <div className="flex items-center">
-                        <Link
+                        <NavLink
                             to="/"
                             aria-label="Home"
                             title="Home"
@@ -44,56 +45,58 @@ const Header = () => {
                             <span className="text-xl font-bold tracking-wide text-gray-700 uppercase">
                                 Code Accademia
                             </span>
-                        </Link>
+                        </NavLink>
                         <ul className="flex items-center hidden space-x-8 lg:flex">
                             <li>
-                                <Link
+                                <NavLink
                                     to="/"
                                     aria-label="Home"
                                     title="Home"
                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                 >
                                     Home
-                                </Link>
+                                </NavLink>
                             </li>
                             <li>
-                                <Link
+                                <NavLink
                                     to="/courses"
-                                    aria-label="Our product"
-                                    title="Our product"
+                                    aria-label="Courses"
+                                    title="Courses"
                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
                                 >
                                     Courses
-                                </Link>
+                                </NavLink>
                             </li>
                             <li>
                                 <Link
-                                    to="/faq"
+                                    to="faq"
+                                    spy={true} smooth={true} offset={50} duration={1000}
                                     aria-label="FaQ"
                                     title="FaQ"
-                                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
+                                    className="font-medium cursor-pointer tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
                                 >
                                     FAQ
                                 </Link>
                             </li>
                             <li>
-                                <Link
+                                <NavLink
                                     to="/blog"
                                     aria-label="Blog"
                                     title="Blog"
                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
                                 >
                                     Blog
-                                </Link>
+                                </NavLink>
                             </li>
                             <li>
                                 <Link
-                                    href="/"
-                                    aria-label="About us"
-                                    title="About us"
-                                    className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
+                                    to="about"
+                                    spy={true} smooth={true} offset={50} duration={1000}
+                                    aria-label="About"
+                                    title="About"
+                                    className="font-medium cursor-pointer tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
                                 >
-                                    About us
+                                    About
                                 </Link>
                             </li>
 
@@ -114,7 +117,7 @@ const Header = () => {
                                         title="Sign out"></RiLogoutBoxRLine>
                                 </li>
                                 <li>
-                                    <Link onClick={handleValue}>{
+                                    <NavLink onClick={handleValue}>{
                                         value ?
                                             <div className="tooltip tooltip-bottom" data-tip="Dark" >
                                                 <FaMoon />
@@ -123,33 +126,33 @@ const Header = () => {
                                             <div className="tooltip tooltip-bottom" data-tip="Light">
                                                 <FaSun />
                                             </div>
-                                    }</Link>
+                                    }</NavLink>
                                 </li>
                             </>
                             :
                             <>
                                 <li>
-                                    <Link
+                                    <NavLink
                                         to='/login'
                                         aria-label="Login"
                                         title="Login"
                                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
                                     >
                                         Login
-                                    </Link>
+                                    </NavLink>
                                 </li>
                                 <li>
-                                    <Link
+                                    <NavLink
                                         to="/signup"
                                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
                                         aria-label="Sign up"
                                         title="Sign up"
                                     >
                                         Sign up
-                                    </Link>
+                                    </NavLink>
                                 </li>
                                 <li>
-                                    <Link onClick={handleValue}>{
+                                    <NavLink onClick={handleValue}>{
                                         value ?
                                             <div className="tooltip tooltip-bottom" data-tip="Dark" >
                                                 <FaMoon />
@@ -158,7 +161,7 @@ const Header = () => {
                                             <div className="tooltip tooltip-bottom" data-tip="Light">
                                                 <FaSun />
                                             </div>
-                                    }</Link>
+                                    }</NavLink>
                                 </li>
                             </>
                         }
@@ -190,7 +193,7 @@ const Header = () => {
                                 <div className="p-5 bg-gray-100 border rounded shadow-sm">
                                     <div className="flex items-center justify-between mb-4">
                                         <div>
-                                            <Link
+                                            <NavLink
                                                 href="/"
                                                 aria-label="Home"
                                                 title="Home"
@@ -200,7 +203,7 @@ const Header = () => {
                                                 <span className="text-xl font-bold tracking-wide text-gray-700 uppercase">
                                                     Code Accademia
                                                 </span>
-                                            </Link>
+                                            </NavLink>
                                         </div>
                                         <div>
                                             <button
@@ -221,54 +224,54 @@ const Header = () => {
                                     <nav>
                                         <ul className="space-y-4">
                                             <li>
-                                                <Link
+                                                <NavLink
                                                     to="/"
                                                     aria-label="Home"
                                                     title="Home"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
                                                     Home
-                                                </Link>
+                                                </NavLink>
                                             </li>
                                             <li>
-                                                <Link
+                                                <NavLink
                                                     to="/courses"
                                                     aria-label="Courses"
                                                     title="Courses"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
                                                     Courses
-                                                </Link>
+                                                </NavLink>
                                             </li>
                                             <li>
-                                                <Link
+                                                <NavLink
                                                     to="/faq"
                                                     aria-label="FAQ"
                                                     title="FAQ"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
                                                     FAQ
-                                                </Link>
+                                                </NavLink>
                                             </li>
                                             <li>
-                                                <Link
+                                                <NavLink
                                                     to="/blog"
                                                     aria-label="Blog"
                                                     title="Blog"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
                                                     Blog
-                                                </Link>
+                                                </NavLink>
                                             </li>
                                             <li>
-                                                <Link
+                                                <NavLink
                                                     to="/about"
-                                                    aria-label="About us"
-                                                    title="About us"
+                                                    aria-label="About"
+                                                    title="About"
                                                     className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                                                 >
-                                                    About us
-                                                </Link>
+                                                    About
+                                                </NavLink>
                                             </li>
                                             {user?.uid ?
                                                 <>
@@ -284,7 +287,7 @@ const Header = () => {
                                                             title="Sign out"></RiLogoutBoxRLine>
                                                     </li>
                                                     <li>
-                                                        <Link onClick={handleValue}>{
+                                                        <NavLink onClick={handleValue}>{
                                                             value ?
                                                                 <div className="tooltip tooltip-bottom" data-tip="Dark" >
                                                                     <FaMoon />
@@ -293,33 +296,33 @@ const Header = () => {
                                                                 <div className="tooltip tooltip-bottom" data-tip="Light">
                                                                     <FaSun />
                                                                 </div>
-                                                        }</Link>
+                                                        }</NavLink>
                                                     </li>
                                                 </>
                                                 :
                                                 <>
                                                     <li>
-                                                        <Link
+                                                        <NavLink
                                                             to='/login'
                                                             aria-label="Login"
                                                             title="Login"
                                                             className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
                                                         >
                                                             Login
-                                                        </Link>
+                                                        </NavLink>
                                                     </li>
                                                     <li>
-                                                        <Link
+                                                        <NavLink
                                                             to="/signup"
                                                             className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-teal-accent-400"
                                                             aria-label="Sign up"
                                                             title="Sign up"
                                                         >
                                                             Sign up
-                                                        </Link>
+                                                        </NavLink>
                                                     </li>
                                                     <li>
-                                                        <Link onClick={handleValue}>{
+                                                        <NavLink onClick={handleValue}>{
                                                             value ?
                                                                 <div className="tooltip tooltip-bottom" data-tip="Dark" >
                                                                     <FaMoon />
@@ -328,7 +331,7 @@ const Header = () => {
                                                                 <div className="tooltip tooltip-bottom" data-tip="Light">
                                                                     <FaSun />
                                                                 </div>
-                                                        }</Link>
+                                                        }</NavLink>
                                                     </li>
                                                 </>
                                             }
