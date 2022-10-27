@@ -27,9 +27,8 @@ const Footer = () => {
                                 <ScrollLink
                                     to="faq"
                                     spy={true} smooth={true} offset={50} duration={1000}
-                                    aria-label="FaQ"
-                                    title="FaQ"
-                                    className="text-sm cursor-pointer tracking-wide text-gray-200 transition-colors duration-200"
+                                    rel="noopener noreferrer"
+                                    className='cursor-pointer'
                                 >
                                     FAQ
                                 </ScrollLink>
@@ -40,15 +39,11 @@ const Footer = () => {
                         <h3 className="tracking-wide uppercase dark:text-gray-50">Company</h3>
                         <ul className="space-y-1">
                             <li>
-                                <Link rel="noopener noreferrer" href="#">About Us</Link>
-                            </li>
-                            <li>
                                 <ScrollLink
                                     to="about"
                                     spy={true} smooth={true} offset={50} duration={1000}
-                                    aria-label="About"
-                                    title="About"
-                                    className="text-sm cursor-pointer tracking-wide text-gray-200 transition-colors duration-200"
+                                    rel="noopener noreferrer"
+                                    className='cursor-pointer'
                                 >
                                     About
                                 </ScrollLink>
